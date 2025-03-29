@@ -1,0 +1,53 @@
+﻿@model SportEvent
+@{
+    ViewData["Title"] = "Event Details";
+}
+
+<link rel="stylesheet" href="~/css/detail.css" asp-append-version="true">
+
+
+
+
+<a href="@Url.Action("Index", "SportEvent")" class="btn-back">&larr; Back</a>
+<div class="container">
+
+
+    <div class="event-header">
+        <div class="event-info-box">
+            <h2>@Model.Name</h2>
+            <p>@Model.Description</p>
+        </div>
+        <img src="@Model.Image" alt="Event Image" class="event-image" onerror="this.onerror=null;this.src='/images/placeholder.jpg';">
+    </div>
+
+    <div class="event-details">
+        <p><b>Category: </b>@Model.EventCategory</p>
+        <p><b>Location: </b>@Model.Address.City / @Model.Address.City / @Model.Address.PostalCode</p>
+    </div>
+</div>
+
+<script>
+    function toggleMenu() {
+        const menu = document.getElementById("menu");
+        const overlay = document.getElementById("overlay");
+        const isOpen = menu.classList.toggle("open");
+
+        if (isOpen) {
+            overlay.classList.add("show");
+        } else {
+            overlay.classList.remove("show");
+        }
+    }
+
+    document.addEventListener("keydown", function (event) {
+        if (event.key === "Escape") {
+            const menu = document.getElementById("menu");
+            const overlay = document.getElementById("overlay");
+
+            if (menu.classList.contains("open")) {
+                menu.classList.remove("open");
+                overlay.classList.remove("show");
+            }
+        }
+    });
+</script>

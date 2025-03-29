@@ -1,6 +1,35 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
-<h1>SportEvent</h1>
+﻿@model IEnumerable<SportEvent>
+
+<link rel="stylesheet" href="~/css/sportEvent.css" asp-append-version="true">
+
+<div class="main-container">
+    <h1 class="text-center my-4">Sport Events</h1>
+    <div class="album py-3">
+        <div class="container">
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4">
+                @foreach (var item in Model)
+                {
+                    <div class="col">
+                        <div class="card shadow-sm h-100">
+                            <img src="@item.Image" class="card-img-top" alt="Event Image"
+                                 onerror="this.onerror=null;this.src='https://via.placeholder.com/300x200';">
+                            <div class="card-body">
+                                <h5 class="card-title">@item.Name</h5>
+                                <span class="badge bg-primary">@item.EventCategory</span>
+                                <p class="card-text">@item.Description</p>
+                                <div class="d-flex justify-content-center align-items-center">
+                                    <div class="btn-group">
+                                        <a asp-controller="SportEvent" asp-action="Detail" asp-route-id="@item.Id" type="button" class="btn btn-sm btn-primary">View</a>
+                                        <button type="button" class="btn btn-sm btn-primary">Edit</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+

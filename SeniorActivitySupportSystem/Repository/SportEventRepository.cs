@@ -33,6 +33,10 @@ namespace SeniorActivitySupportSystem.Repository
         {
             return await _context.SportEvents.Include(i =>i.Address).FirstOrDefaultAsync(i => i.Id == id);
         }
+        public async Task<SportEvent> GetByIdAsyncNoTracking(int id)
+        {
+            return await _context.SportEvents.Include(i => i.Address).AsNoTracking().FirstOrDefaultAsync(i => i.Id == id);
+        }
 
         public async Task<IEnumerable<SportEvent>> GetSportEventByCity(string city)
         {
@@ -47,7 +51,8 @@ namespace SeniorActivitySupportSystem.Repository
 
         public bool Update(SportEvent sportEvent)
         {
-            throw new NotImplementedException();
+            _context.Update(sportEvent);
+            return Save();
         }
     }
 }

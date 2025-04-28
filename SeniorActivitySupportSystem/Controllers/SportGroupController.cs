@@ -72,5 +72,66 @@ namespace SeniorActivitySupportSystem.Controllers
             }
             return View(sportGroupVM);
         }
+        public async Task<IActionResult>Edit (int id)
+        {
+            var sportGroup = await _sportGroupRepository.GetByIdAsync(id);
+            if (sportGroup == null) return View("Error");
+            var sportGroupVM = new EditSportGroupViewModel
+            {
+                Name = sportGroup.Name,
+                Description = sportGroup.Description,
+                AddressId = sportGroup.AddressId,
+                Address = sportGroup.Address,
+                URL = sportGroup.Image,
+                SportGroupCategory = sportGroup.SportGroupCategory,
+            };
+            return View(sportGroupVM);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult>Edit(int id, EditSportGroupViewModel sportGroupVM)
+        {
+            if (!ModelState.IsValid)
+            {
+                ModelState.AddModelError("", "Failed to edit");
+                return View("Edit", sportGroupVM);
+            }
+            var userSportGroup = await _sportGroupRepository.GetByIdAsyncNoTracking(id);
+
+            if (userSportGroup != null)
+            {
+                try
+                {
+                    await _cloudinary.DeletePhotoAsync(userSportGroup.Image);
+
+                }
+                catch
+                {
+                    ModelState.AddModelError("", "Could not delete image");
+                    return View("Edit", sportGroupVM);
+                }
+                var imageResult = await _cloudinary.AddPhotoAsync(sportGroupVM.Image);
+
+                var sportGroup = new SportGroup
+                {
+                    Id = id,
+                    Name = sportGroupVM.Name,
+                    Description = sportGroupVM.Description,
+                    Image = imageResult.Url.ToString(),
+                    AddressId = sportGroupVM.AddressId,
+                    Address = sportGroupVM.Address
+                };
+
+                _sportGroupRepository.Update(sportGroup);
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                return View(sportGroupVM);
+            }
+           
+            
+
+        }
     }
 }

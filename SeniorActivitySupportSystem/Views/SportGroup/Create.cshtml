@@ -1,5 +1,6 @@
 ﻿@using SeniorActivitySupportSystem.Data.Enum
-@model SportGroup
+@using SeniorActivitySupportSystem.ViewModel
+@model CreateSportGroupViewModel
 
 <link rel="stylesheet" href="~/css/Create.css" asp-append-version="true" />
 
@@ -52,7 +53,7 @@
 
             <div class="form-group">
                 <label asp-for="Image">Select Cover Photo</label>
-                <input asp-for="Image" type="text" class="form-control-file" />
+                <input asp-for="Image" type="file" class="form-control" />
                 <span asp-validation-for="Image" class="text-danger"></span>
             </div>
 

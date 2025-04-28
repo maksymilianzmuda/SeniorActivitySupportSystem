@@ -28,7 +28,7 @@
                                 <div class="d-flex justify-content-center align-items-center">
                                     <div class="btn-group">
                                         <a asp-controller="SportGroup" asp-action="Detail" asp-route-id="@item.Id" type="button" class="btn btn-sm btn-primary">View</a>
-                                        <button type="button" class="btn btn-sm btn-primary">Edit</button>
+                                        <a asp-controller="SportGroup" asp-action="Edit" asp-route-id="@item.Id" type="button" class="btn btn-sm btn-primary">Edit</a>
                                     </div>
                                 </div>
                             </div>

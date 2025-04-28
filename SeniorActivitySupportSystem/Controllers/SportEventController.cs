@@ -69,5 +69,66 @@ namespace SeniorActivitySupportSystem.Controllers
             }
             return View(sportEventVM);
         }
+        public async Task<IActionResult> Edit(int id)
+        {
+            var sportEvent = await _sportEventRepository.GetByIdAsync(id);
+            if (sportEvent == null) return View("Error");
+            var sportEventVM = new EditSportEventViewModel
+            {
+                Name = sportEvent.Name,
+                Description = sportEvent.Description,
+                AddressId = sportEvent.AddressId,
+                Address = sportEvent.Address,
+                URL = sportEvent.Image,
+                SportEventCategory = sportEvent.EventCategory,
+            };
+            return View(sportEventVM);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Edit(int id, EditSportEventViewModel sportEventVM)
+        {
+            if (!ModelState.IsValid)
+            {
+                ModelState.AddModelError("", "Failed to edit");
+                return View("Edit", sportEventVM);
+            }
+            var userSportGroup = await _sportEventRepository.GetByIdAsyncNoTracking(id);
+
+            if (userSportGroup != null)
+            {
+                try
+                {
+                    await _cloudinary.DeletePhotoAsync(userSportGroup.Image);
+
+                }
+                catch
+                {
+                    ModelState.AddModelError("", "Could not delete image");
+                    return View("Edit", sportEventVM);
+                }
+                var imageResult = await _cloudinary.AddPhotoAsync(sportEventVM.Image);
+
+                var sportEvent = new SportEvent
+                {
+                    Id = id,
+                    Name = sportEventVM.Name,
+                    Description = sportEventVM.Description,
+                    Image = imageResult.Url.ToString(),
+                    AddressId = sportEventVM.AddressId,
+                    Address = sportEventVM.Address
+                };
+
+                _sportEventRepository.Update(sportEvent);
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                return View(sportEventVM);
+            }
+
+
+
+        }
     }
 }

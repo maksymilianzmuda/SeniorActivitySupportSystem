@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using SeniorActivitySupportSystem.Data;
 using SeniorActivitySupportSystem.Interfaces;
 using SeniorActivitySupportSystem.Models;
@@ -34,6 +35,11 @@ namespace SeniorActivitySupportSystem.Repository
             return await _context.SportGroups.Include(i => i.Address).FirstOrDefaultAsync(i => i.Id == id);
         }
 
+        public async Task<SportGroup> GetByIdAsyncNoTracking(int id)
+        {
+            return await _context.SportGroups.Include(i => i.Address).AsNoTracking().FirstOrDefaultAsync(i => i.Id == id);
+        }
+
         public async Task<IEnumerable<SportGroup>> GetSportGroupByCity(string city)
         {
             return await _context.SportGroups.Where(c => c.Address.City.Contains(city)).ToListAsync();
@@ -47,7 +53,9 @@ namespace SeniorActivitySupportSystem.Repository
 
         public bool Update(SportGroup sportGroup)
         {
-            throw new NotImplementedException();
+            _context.Update(sportGroup);
+            return Save();
         }
+
     }
 }

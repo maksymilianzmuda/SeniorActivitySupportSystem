@@ -6,6 +6,7 @@ namespace SeniorActivitySupportSystem.Interfaces
     {
         Task<IEnumerable<SportEvent>> GetAll();
         Task<SportEvent> GetByIdAsync(int id);
+        Task<SportEvent> GetByIdAsyncNoTracking(int id);
         Task<IEnumerable<SportEvent>> GetSportEventByCity(string city);
         bool Add(SportEvent sportEvent);
         bool Delete(SportEvent sportEvent);

@@ -1,7 +1,9 @@
 using Microsoft.EntityFrameworkCore;
 using SeniorActivitySupportSystem.Data;
+using SeniorActivitySupportSystem.Helpers;
 using SeniorActivitySupportSystem.Interfaces;
 using SeniorActivitySupportSystem.Repository;
+using SeniorActivitySupportSystem.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,6 +11,8 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 builder.Services.AddScoped<ISportGroupRepository, SportGroupRepository>();
 builder.Services.AddScoped<ISportEventRepository, SportEventRepository>();
+builder.Services.AddScoped<ICloudinaryService, CloudinaryService>();
+builder.Services.Configure<CloudinarySettings>(builder.Configuration.GetSection("CloudinarySettings"));
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("ConnectionString"));

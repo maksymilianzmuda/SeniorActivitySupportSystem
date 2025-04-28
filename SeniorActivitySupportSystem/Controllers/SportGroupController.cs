@@ -3,6 +3,8 @@ using Microsoft.EntityFrameworkCore;
 using SeniorActivitySupportSystem.Data;
 using SeniorActivitySupportSystem.Interfaces;
 using SeniorActivitySupportSystem.Models;
+using SeniorActivitySupportSystem.Services;
+using SeniorActivitySupportSystem.ViewModel;
 
 namespace SeniorActivitySupportSystem.Controllers
 {
@@ -11,10 +13,13 @@ namespace SeniorActivitySupportSystem.Controllers
 
         private readonly ISportGroupRepository _sportGroupRepository;
 
-        public SportGroupController(ApplicationDbContext context, ISportGroupRepository sportGroupRepository )
+        private readonly ICloudinaryService _cloudinary;
+        public SportGroupController(ISportGroupRepository sportGroupRepository, ICloudinaryService cloudinary)
         {
 
             _sportGroupRepository = sportGroupRepository;
+
+            _cloudinary = cloudinary;
         }
         public async Task<IActionResult> Index()
         {
@@ -32,17 +37,40 @@ namespace SeniorActivitySupportSystem.Controllers
             return View();
         }
 
+
         [HttpPost]
-        public async Task<IActionResult> Create (SportGroup sportGroup)
+        public async Task<IActionResult> Create(CreateSportGroupViewModel sportGroupVM)
         {
             if (ModelState.IsValid)
             {
-                return View(sportGroup);
+                var result = await _cloudinary.AddPhotoAsync(sportGroupVM.Image);
 
+                if (result.Error != null)
+                {
+                    ModelState.AddModelError("", "Image upload error: " + result.Error.Message);
+                    return View(sportGroupVM);
+                }
+
+                var sportGroup = new SportGroup
+                {
+                    Name = sportGroupVM.Name,
+                    Description = sportGroupVM.Description,
+                    Image = result.SecureUrl.ToString(), // <<<<<< NAJWAŻNIEJSZA ZMIANA
+                    Address = new Address
+                    {
+                        City = sportGroupVM.Address.City,
+                        Street = sportGroupVM.Address.Street,
+                        PostalCode = sportGroupVM.Address.PostalCode
+                    }
+                };
+                _sportGroupRepository.Add(sportGroup);
+                return RedirectToAction("Index");
             }
-
-            _sportGroupRepository.Add(sportGroup);
-            return RedirectToAction("Index");
+            else
+            {
+                ModelState.AddModelError("", "Model validation failed");
+            }
+            return View(sportGroupVM);
         }
     }
 }

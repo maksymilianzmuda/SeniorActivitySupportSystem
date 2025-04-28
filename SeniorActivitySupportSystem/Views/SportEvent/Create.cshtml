@@ -1,5 +1,6 @@
 ﻿@using SeniorActivitySupportSystem.Data.Enum
-@model SportEvent
+@using SeniorActivitySupportSystem.ViewModel
+@model CreateSportEventViewModel
 
 <link rel="stylesheet" href="~/css/Create.css" asp-append-version="true" />
 
@@ -16,11 +17,11 @@
                 </div>
 
                 <div class="form-group" style="flex: 1; margin-left: 10px;">
-                    <label asp-for="EventCategory">Sport Group Type</label>
-                    <select asp-for="EventCategory" asp-items="@Html.GetEnumSelectList<EventCategory>()" class="form-control">
+                    <label asp-for="SportEventCategory">Sport Group Type</label>
+                    <select asp-for="SportEventCategory" asp-items="@Html.GetEnumSelectList<EventCategory>()" class="form-control">
                         <option value="">--Select--</option>
                     </select>
-                    <span asp-validation-for="EventCategory" class="text-danger"></span>
+                    <span asp-validation-for="SportEventCategory" class="text-danger"></span>
                 </div>
             </div>
 
@@ -52,7 +53,7 @@
 
             <div class="form-group">
                 <label asp-for="Image">Select Cover Photo</label>
-                <input asp-for="Image" type="text" class="form-control-file" />
+                <input asp-for="Image" type="file" class="form-control" />
                 <span asp-validation-for="Image" class="text-danger"></span>
             </div>
 

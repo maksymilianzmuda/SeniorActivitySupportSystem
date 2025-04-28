@@ -1,26 +1,46 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SeniorActivitySupportSystem.Data;
+using SeniorActivitySupportSystem.Interfaces;
 using SeniorActivitySupportSystem.Models;
+using SeniorActivitySupportSystem.Repository;
 
 namespace SeniorActivitySupportSystem.Controllers
 {
     public class SportEventController : Controller
     {
-        private readonly ApplicationDbContext _context;
-        public SportEventController(ApplicationDbContext context)
+        private readonly ISportEventRepository _sportEventRepository;
+
+        public SportEventController(ApplicationDbContext context, ISportEventRepository sportEventRepository)
         {
-            _context = context;
+            
+            _sportEventRepository = sportEventRepository;
         }
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            List<SportEvent> sportEvents = _context.SportEvents.ToList();
+            IEnumerable<SportEvent> sportEvents = await _sportEventRepository.GetAll();
             return View(sportEvents);
         }
-        public IActionResult Detail(int id)
+        public async Task<IActionResult> Detail(int id)
         {
-            SportEvent sportEvent = _context.SportEvents.Include(a => a.Address).FirstOrDefault(s => s.Id == id);
+            SportEvent sportEvent = await _sportEventRepository.GetByIdAsync(id);
             return View(sportEvent);
+        }
+        public IActionResult Create()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Create(SportEvent sportEvent)
+        {
+            if (ModelState.IsValid)
+            {
+                return View(sportEvent);
+            }
+
+            _sportEventRepository.Add(sportEvent);
+            return RedirectToAction("Index");
         }
     }
 }

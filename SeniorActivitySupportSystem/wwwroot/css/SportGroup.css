@@ -1,4 +1,5 @@
-﻿body {
+﻿
+body {
     background: url('/images/subPages.jpg') no-repeat center center fixed;
     background-size: cover;
     color: white;
@@ -17,7 +18,6 @@
     padding: 20px;
     border-radius: 12px;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
-    position: relative;
     text-align: center;
 }
 
@@ -64,6 +64,7 @@
         left: 0;
     }
 
+/* Nakładka (tło) - pojawia się, gdy menu jest otwarte */
 .overlay {
     position: fixed;
     top: 0;
@@ -79,10 +80,11 @@
         display: block;
     }
 
+/* Karty grup sportowych */
 .card {
-    background: rgba(44, 62, 80, 0.85) !important;
-    color: white !important;
-    border: none !important;
+    background: rgba(44, 62, 80, 0.85);
+    color: white;
+    border: none;
     text-align: center;
 }
 
@@ -90,14 +92,9 @@
     color: white;
 }
 
-/* Zmiana wyglądu przycisku */
 .btn-primary {
     background-color: #1f2d3d;
     border-color: #1f2d3d;
-    padding: 12px 24px; /* Zwiększenie paddingu */
-    font-size: 16px; /* Dostosowanie rozmiaru czcionki */
-    border-radius: 8px; /* Zaokrąglenie rogów */
-    transition: background-color 0.3s ease, border-color 0.3s ease; /* Łagodniejszy efekt hover */
 }
 
     .btn-primary:hover {
@@ -105,9 +102,3 @@
         border-color: #314b63;
     }
 
-/* Umieszczenie przycisku po prawej stronie */
-.btn-container {
-    display: flex;
-    justify-content: flex-end; /* Ustawienie przycisku na prawo */
-    margin-top: 20px; /* Dodanie marginesu od góry */
-}

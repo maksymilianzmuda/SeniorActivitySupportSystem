@@ -1,4 +1,5 @@
-﻿body {
+﻿
+body {
     background: url('/images/subPages.jpg') no-repeat center center fixed;
     background-size: cover;
     color: white;
@@ -85,19 +86,13 @@
     border: none !important;
     text-align: center;
 }
-
 .card-title, .card-text {
     color: white;
 }
 
-/* Zmiana wyglądu przycisku */
 .btn-primary {
     background-color: #1f2d3d;
     border-color: #1f2d3d;
-    padding: 12px 24px; /* Zwiększenie paddingu */
-    font-size: 16px; /* Dostosowanie rozmiaru czcionki */
-    border-radius: 8px; /* Zaokrąglenie rogów */
-    transition: background-color 0.3s ease, border-color 0.3s ease; /* Łagodniejszy efekt hover */
 }
 
     .btn-primary:hover {
@@ -105,9 +100,3 @@
         border-color: #314b63;
     }
 
-/* Umieszczenie przycisku po prawej stronie */
-.btn-container {
-    display: flex;
-    justify-content: flex-end; /* Ustawienie przycisku na prawo */
-    margin-top: 20px; /* Dodanie marginesu od góry */
-}

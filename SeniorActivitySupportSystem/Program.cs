@@ -1,10 +1,14 @@
 using Microsoft.EntityFrameworkCore;
 using SeniorActivitySupportSystem.Data;
+using SeniorActivitySupportSystem.Interfaces;
+using SeniorActivitySupportSystem.Repository;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddScoped<ISportGroupRepository, SportGroupRepository>();
+builder.Services.AddScoped<ISportEventRepository, SportEventRepository>();
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("ConnectionString"));

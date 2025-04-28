@@ -8,17 +8,14 @@
 
   <ItemGroup>
     <Compile Remove="Views\Nowy folder1\**" />
-    <Compile Remove="Views\Nowy folder\**" />
     <Content Remove="Views\Nowy folder1\**" />
-    <Content Remove="Views\Nowy folder\**" />
     <EmbeddedResource Remove="Views\Nowy folder1\**" />
-    <EmbeddedResource Remove="Views\Nowy folder\**" />
     <None Remove="Views\Nowy folder1\**" />
-    <None Remove="Views\Nowy folder\**" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="CloudinaryDotNet" Version="1.27.5" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="8.0.15" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.3" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="9.0.3" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="9.0.3">

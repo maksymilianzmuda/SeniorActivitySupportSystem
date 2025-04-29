@@ -10,10 +10,10 @@ namespace SeniorActivitySupportSystem.Models
         public string LastName { get; set; }
         public DateTime? DateOfBirth { get; set; }
         public string Gender { get; set; }
-        public string Bio { get; set; }
+        public string? Bio { get; set; }
         [ForeignKey("Address")]
-        public int AddressId { get; set; }
-        public Address Address { get; set; }
+        public int? AddressId { get; set; }
+        public Address? Address { get; set; }
 
         public ICollection<SportEvent> SportEvents { get; set; }
         public ICollection<SportGroup> SportGroups { get; set; }

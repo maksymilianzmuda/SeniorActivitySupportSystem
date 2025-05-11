@@ -9,6 +9,7 @@
 <div class="form-wrapper">
     <div class="form-container">
         <form asp-action="Edit" method="post" enctype="multipart/form-data">
+            <input type="hidden" id="AppUserId" name="AppUserId" value="@Model.AppUserId" />
             <input type="hidden" value="AddressId" id="AddressId" />
             <div class="form-row">
                 <div class="form-group" style="flex: 1; margin-right: 10px;">

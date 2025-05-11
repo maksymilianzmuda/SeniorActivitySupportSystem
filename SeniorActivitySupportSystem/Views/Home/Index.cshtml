@@ -20,13 +20,23 @@
 
     <div class="main-container">
         <h1 class="fw-bold">Welcome to SASS</h1>
-        <p class="lead">Stay active and connected! Senior Activity Support is a community platform where seniors can find groups, join events, and enjoy an active lifestyle together.</p>
-        <p>
-            <a href="/account/register" class="btn btn-lg btn-success fw-bold">Sign in now!</a>
-        </p>
-        <footer class="mt-auto text-white-50">
-            <p>&copy; 2025 Senior Activity Support</p>
-        </footer>
+        
+
+        @if (User.Identity.IsAuthenticated)
+        {
+            <p class="welcome-msg"><b>Good to see you again, </b><span class="username"><b>@User.Identity.Name</b></span><b>!</b></p>
+            <p class="lead">Stay active and connected! Senior Activity Support is a community platform where seniors can find groups, join events, and enjoy an active lifestyle together.</p>
+        }
+        else
+        {
+            <p>
+            <p class="lead">Stay active and connected! Senior Activity Support is a community platform where seniors can find groups, join events, and enjoy an active lifestyle together.</p>
+                <a href="/account/register" class="btn btn-lg btn-success fw-bold">Sign in now!</a>
+
+            </p>
+        }
+
+        
     </div>
 
 

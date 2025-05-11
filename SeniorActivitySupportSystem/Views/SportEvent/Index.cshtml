@@ -22,8 +22,17 @@
                                 <p class="card-text">@item.Description</p>
                                 <div class="d-flex justify-content-center align-items-center">
                                     <div class="btn-group">
-                                        <a asp-controller="SportEvent" asp-action="Detail" asp-route-id="@item.Id" type="button" class="btn btn-sm btn-primary">View</a>
-                                        <a asp-controller="SportEvent" asp-action="Edit" asp-route-id="@item.Id" type="button" class="btn btn-sm btn-primary">Edit</a>
+                                        @if (User.IsInRole("admin"))
+                                        {
+                                            <a asp-controller="SportEvent" asp-action="Detail" asp-route-id="@item.Id" type="button" class="btn btn-sm btn-primary">View</a>
+                                            <a asp-controller="SportEvent" asp-action="Edit" asp-route-id="@item.Id" type="button" class="btn btn-sm btn-primary">Edit</a>
+                                            <a asp-controller="SportEvent" asp-action="Delete" asp-route-id="@item.Id" type="button" class="btn btn-sm btn-primary">Delete</a>
+                                        }
+                                        else
+                                        {
+                                            <a asp-controller="SportEvent" asp-action="Detail" asp-route-id="@item.Id" type="button" class="btn btn-sm btn-primary">View</a>
+                                        }
+
                                     </div>
                                 </div>
                             </div>

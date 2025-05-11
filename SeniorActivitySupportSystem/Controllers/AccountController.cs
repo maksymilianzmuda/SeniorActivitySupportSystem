@@ -71,7 +71,7 @@ namespace SeniorActivitySupportSystem.Controllers
             }
             var newUser = new AppUser
             {
-                UserName = registerVM.Email,  // lub inne pole, jeśli masz
+                UserName = registerVM.Email,  
                 Email = registerVM.Email,
                 DateOfBirth = registerVM.DateOfBirth,
                 FirstName = registerVM.FirstName,

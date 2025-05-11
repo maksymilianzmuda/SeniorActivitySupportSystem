@@ -10,18 +10,32 @@
 </head>
 <body>
     <header>
-        <!-- Hamburger Menu Button -->
+
         <button class="menu-toggle" onclick="toggleMenu()">☰</button>
 
-        <!-- Sidebar Menu -->
-        <div class="menu" id="menu">
-            <a href="/" onclick="toggleMenu()">Home</a>
-            <a href="/sportgroup" onclick="toggleMenu()">Groups</a>
-            <a href="/sportevent" onclick="toggleMenu()">Events</a>
-            <a href="/privacy" onclick="toggleMenu()">Privacy</a>
-        </div>
 
-        <!-- Overlay for closing the menu when clicking outside -->
+        @if (User.Identity.IsAuthenticated)
+        {
+            <div class="menu" id="menu">
+                <a href="/" onclick="toggleMenu()">Home</a>
+                <a href="/sportgroup" onclick="toggleMenu()">Groups</a>
+                <a href="/sportevent" onclick="toggleMenu()">Events</a>
+                <a href="/dashboard" onclick="toggleMenu()">Dashboard</a>
+                <a href="/user" onclick="toggleMenu()">Users</a>
+                <form asp-area="" asp-controller="Account" asp-action="Logout" method="post" style="display: inline;">
+                    <button type="submit" class="logout-btn" onclick="toggleMenu()">Logout</button>
+                </form>
+            </div>
+        }
+        else
+        {
+            <div class="menu" id="menu">
+                <a href="/" onclick="toggleMenu()">Home</a>
+                <a href="/account/login" onclick="toggleMenu()">Log In</a>
+                <a href="/privacy" onclick="toggleMenu()">Privacy</a>
+            </div>
+        }
+
         <div class="overlay" id="overlay" onclick="toggleMenu()"></div>
     </header>
 
@@ -34,7 +48,7 @@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
-    <script src="~/js/menu.js" asp-append-version="true"></script> <!-- Dodajemy plik menu.js -->
+    <script src="~/js/menu.js" asp-append-version="true"></script> 
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

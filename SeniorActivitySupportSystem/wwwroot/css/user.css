@@ -1,0 +1,218 @@
+﻿/* Main Body Styles */
+body {
+    background: url('/images/subPages.jpg') no-repeat center center fixed;
+    background-size: cover;
+    color: white;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    flex-direction: column;
+}
+
+/* Container Styles */
+.container {
+    width: 95%;
+    max-width: 1100px;
+    background: rgba(0, 0, 0, 0.85);
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.6);
+    margin-top: 80px;
+}
+
+/* Menu Toggle Styles */
+.menu-toggle {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    padding: 10px 15px;
+    border-radius: 6px;
+    cursor: pointer;
+    color: white;
+    font-size: 24px;
+    z-index: 1050;
+    transition: background 0.3s;
+}
+
+    .menu-toggle:hover {
+        background: rgba(255, 255, 255, 0.4);
+    }
+
+/* Menu Styles */
+.menu {
+    position: fixed;
+    top: 0;
+    left: -250px;
+    width: 250px;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.9);
+    padding-top: 60px;
+    transition: left 0.3s ease-in-out;
+    z-index: 1050;
+}
+
+    .menu.open {
+        left: 0;
+    }
+
+    .menu a {
+        display: block;
+        padding: 15px;
+        color: white;
+        text-decoration: none;
+        transition: background 0.3s;
+    }
+
+        .menu a:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+/* Overlay Styles */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.5);
+    display: none;
+    z-index: 1049;
+}
+
+    .overlay.show {
+        display: block;
+    }
+
+/* Button Back Styles */
+.btn-back {
+    display: inline-block;
+    margin-bottom: 20px;
+    padding: 12px 24px;
+    background: #ff4d4d;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: background 0.3s;
+}
+
+    .btn-back:hover {
+        background: #cc0000;
+    }
+
+/* Form Container Styles */
+.form-container {
+    background: rgba(0, 0, 0, 0.85);
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.6);
+    width: 100%;
+    max-width: 700px;
+    margin: 40px auto;
+}
+
+    .form-container form {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .form-container .form-group {
+        margin-bottom: 20px;
+    }
+
+    .form-container label {
+        margin-bottom: 8px;
+        font-weight: bold;
+        color: #f5f5f5;
+        font-size: 18px;
+        letter-spacing: 0.5px;
+        background-color: rgba(255, 255, 255, 0.1);
+        padding: 10px;
+        border-radius: 6px;
+    }
+
+    .form-container input,
+    .form-container select,
+    .form-container textarea {
+        background: #ffffff;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+        color: #000;
+        padding: 10px;
+    }
+
+        .form-container input::placeholder,
+        .form-container textarea::placeholder {
+            color: #777;
+        }
+
+    .form-container .btn-primary {
+        background-color: #ff4d4d;
+        border-color: #ff4d4d;
+    }
+
+        .form-container .btn-primary:hover {
+            background-color: #cc0000;
+            border-color: #cc0000;
+        }
+
+/* Main Container Styles */
+.container {
+    width: 95%;
+    max-width: 1100px;
+    background: rgba(0, 0, 0, 0.85);
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.6);
+    margin-top: 80px;
+}
+
+/* Table Styles */
+.table {
+    width: 100%;
+    color: #f0f0f0;
+    background-color: transparent;
+    border-collapse: separate;
+    border-spacing: 0 15px;
+}
+
+    .table tbody tr {
+        background: rgba(255, 255, 255, 0.05);
+        transition: background 0.3s, transform 0.2s;
+        border-radius: 10px;
+        overflow: hidden;
+    }
+
+        .table tbody tr:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: scale(1.02);
+        }
+
+    .table th, .table td {
+        padding: 15px 20px;
+        vertical-align: middle;
+        color: #fff;
+    }
+
+/* Button Styles */
+.btn-outline-primary {
+    color: #ffffff;
+    border-color: #12931d;
+    transition: background 0.3s, color 0.3s;
+}
+
+    .btn-outline-primary:hover {
+        background-color: #12931d;
+        color: #fff;
+        border-color: white;
+    }
+
+/* Divider Styles */
+.table-divider th, .table-divider td {
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
+    padding: 0;
+}

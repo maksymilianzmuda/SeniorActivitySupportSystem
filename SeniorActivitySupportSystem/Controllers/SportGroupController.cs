@@ -12,14 +12,14 @@ namespace SeniorActivitySupportSystem.Controllers
     {
 
         private readonly ISportGroupRepository _sportGroupRepository;
-
         private readonly ICloudinaryService _cloudinary;
-        public SportGroupController(ISportGroupRepository sportGroupRepository, ICloudinaryService cloudinary)
+        private readonly IHttpContextAccessor _httpContextAccessor;
+        public SportGroupController(ISportGroupRepository sportGroupRepository, ICloudinaryService cloudinary, IHttpContextAccessor httpContextAccessor)
         {
 
             _sportGroupRepository = sportGroupRepository;
-
             _cloudinary = cloudinary;
+            _httpContextAccessor = httpContextAccessor;
         }
         public async Task<IActionResult> Index()
         {
@@ -34,7 +34,9 @@ namespace SeniorActivitySupportSystem.Controllers
         }
         public IActionResult Create()
         {
-            return View();
+            var curUserId = _httpContextAccessor.HttpContext.User.GetUserId();
+            var createSportGroupViewModel = new CreateSportGroupViewModel { AppUserId = curUserId };
+            return View(createSportGroupViewModel);
         }
 
 
@@ -55,7 +57,8 @@ namespace SeniorActivitySupportSystem.Controllers
                 {
                     Name = sportGroupVM.Name,
                     Description = sportGroupVM.Description,
-                    Image = result.SecureUrl.ToString(), // <<<<<< NAJWAŻNIEJSZA ZMIANA
+                    Image = result.SecureUrl.ToString(), 
+                    AppUserId = sportGroupVM.AppUserId,
                     Address = new Address
                     {
                         City = sportGroupVM.Address.City,
@@ -82,6 +85,7 @@ namespace SeniorActivitySupportSystem.Controllers
                 Description = sportGroup.Description,
                 AddressId = sportGroup.AddressId,
                 Address = sportGroup.Address,
+                AppUserId = sportGroup.AppUserId,
                 URL = sportGroup.Image,
                 SportGroupCategory = sportGroup.SportGroupCategory,
             };
@@ -118,6 +122,7 @@ namespace SeniorActivitySupportSystem.Controllers
                     Name = sportGroupVM.Name,
                     Description = sportGroupVM.Description,
                     Image = imageResult.Url.ToString(),
+                    AppUserId = sportGroupVM.AppUserId,
                     AddressId = sportGroupVM.AddressId,
                     Address = sportGroupVM.Address
                 };

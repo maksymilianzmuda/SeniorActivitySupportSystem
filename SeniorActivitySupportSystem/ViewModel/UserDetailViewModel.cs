@@ -1,24 +1,22 @@
-﻿using Microsoft.AspNetCore.Identity;
-using System.ComponentModel.DataAnnotations;
+﻿using SeniorActivitySupportSystem.Models;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace SeniorActivitySupportSystem.Models
+namespace SeniorActivitySupportSystem.ViewModel
 {
-    public class AppUser : IdentityUser
+    public class UserDetailViewModel
     {
+        public string Id { get; set; }
+        public string Username { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public DateTime? DateOfBirth { get; set; }
         public string Gender { get; set; }
         public string? Bio { get; set; }
-        public  string? ProfileImageUrl { get; set; }
-        public string? City { get; set; }
-        public string? Street { get; set; }
-        public string? PostalCode { get; set; }
         [ForeignKey("Address")]
         public int? AddressId { get; set; }
         public Address? Address { get; set; }
-        public string? MobileNumber {  get; set; }
+        public IFormFile? Image { get; set; }
+        public string? ProfileImageUrl { get; set; }
         public ICollection<SportEvent> SportEvents { get; set; }
         public ICollection<SportGroup> SportGroups { get; set; }
     }

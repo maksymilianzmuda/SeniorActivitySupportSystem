@@ -1,0 +1,98 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using SeniorActivitySupportSystem.ViewModel
+@model UserDetailViewModel
+@inject SignInManager<AppUser> SignInManager
+<link rel="stylesheet" href="~/css/dashboard.css" asp-append-version="true">
+
+<div class="container">
+    <div class="row">
+        <!-- Profile Card -->
+        <div class="col-lg-4">
+            <div class="card mb-4" style="background-color: rgba(20, 20, 20, 0.95); border-radius: 20px;">
+                <div class="card-body text-center">
+                    <img src="@Model.ProfileImageUrl" alt="@Model.FirstName" class="rounded-circle img-fluid" style="width: 150px; border: 4px solid #444;">
+                    <h5 class="my-3" style="color: #fff;">@Model.FirstName</h5>
+                </div>
+            </div>
+        </div>
+
+        <!-- Profile Details -->
+        <div class="col-lg-8">
+            <div class="card mb-4" style="background-color: rgba(20, 20, 20, 0.95); border-radius: 20px;">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <p class="mb-0" style="color: #fff;">First Name: </p>
+                        </div>
+                        <div class="col-sm-9">
+                            <p class="text-muted mb-0">@Model.FirstName</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <p class="mb-0" style="color: #fff;">Last Name: </p>
+                        </div>
+                        <div class="col-sm-9">
+                            <p class="text-muted mb-0">@Model.LastName</p>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <p class="mb-0" style="color: #fff;">Gender</p>
+                        </div>
+                        <div class="col-sm-9">
+                            <p class="text-muted mb-0">@Model.Gender</p>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <p class="mb-0" style="color: #fff;">Date of Birth</p>
+                        </div>
+                        <div class="col-sm-9">
+                            <p class="text-muted mb-0">@Model.DateOfBirth?.ToString("yyyy-MM-dd")</p>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <p class="mb-0" style="color: #fff;">Address</p>
+                        </div>
+                        <div class="col-sm-9">
+@*                             <p class="text-muted mb-0">@Model.Street, @Model.City, @Model.PostalCode</p> *@
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <label for="bio" style="color: #fff;">Bio</label>
+                        </div>
+                        <div class="col-sm-9">
+                            <textarea id="bio" class="form-control" rows="5" readonly>@Model.Bio</textarea>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</div>
+
+
+
+<script>
+    document.querySelectorAll('.collapsible').forEach(button => {
+        button.addEventListener('click', function () {
+            this.classList.toggle('active');
+            var content = this.nextElementSibling;
+            if (content.style.maxHeight) {
+                content.style.maxHeight = null;
+            } else {
+                content.style.maxHeight = content.scrollHeight + 'px';
+            }
+        });
+    });
+</script>

@@ -1,0 +1,68 @@
+﻿@using SeniorActivitySupportSystem.ViewModel
+@model EditUserDashboardViewModel
+@{
+    ViewData["Title"] = "Edit Profile";
+}
+
+<link rel="stylesheet" href="~/css/dashboard.css" asp-append-version="true">
+
+<div class="container profile-edit-container">
+    <h2>Edit Profile</h2>
+    <form asp-controller="Dashboard" asp-action="EditProfile" method="post" enctype="multipart/form-data">
+        <input type="hidden" asp-for="@Model.Id" />
+        <div class="form-group">
+            <label asp-for="Image" class="custom-file mb-2" for="file2">
+                <input asp-for="Image" type="file" id="file2" class="custom-file-input height-0" oninput="submitProfileImage();" />
+                <span class="btn btn-primary"><i class="icon-upload-to-cloud">&nbsp;</i>Upload</span>
+                <span asp-validation-for="Image" class="text-danger"></span>
+                <button id="submit-image-button" type="submit" hidden></button>
+            </label>
+        </div>
+
+        <div class="form-group">
+            <label for="FirstName">First Name</label>
+            <input type="text" name="FirstName" class="form-control" id="FirstName" value="@Model.FirstName" required>
+        </div>
+
+        <div class="form-group">
+            <label for="LastName">Last Name</label>
+            <input type="text" name="LastName" class="form-control" id="LastName" value="@Model.LastName" required>
+        </div>
+
+        <div class="form-group">
+            <label for="City">City</label>
+            <input type="text" name="City" class="form-control" id="City" value="@Model.City">
+        </div>
+
+        <div class="form-group">
+            <label for="Street">Street</label>
+            <input type="text" name="Street" class="form-control" id="Street" value="@Model.Street">
+        </div>
+
+        <div class="form-group">
+            <label for="PostalCode">Postal Code</label>
+            <input type="text" name="PostalCode" class="form-control" id="PostalCode" value="@Model.PostalCode">
+        </div>
+
+        <div class="form-group">
+            <label for="DateOfBirth">Date of Birth</label>
+            <input type="date" name="DateOfBirth" class="form-control" id="DateOfBirth" value="@Model.DateOfBirth?.ToString("yyyy-MM-dd")">
+        </div>
+
+        <div class="form-group">
+            <label for="Gender">Gender</label>
+            <select name="Gender" class="form-control" id="Gender" required>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+                <option value="Other">Other</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="Bio">Bio</label>
+            <textarea name="Bio" class="form-control" id="Bio">@Model.Bio</textarea>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Save Changes</button>
+    </form>
+</div>

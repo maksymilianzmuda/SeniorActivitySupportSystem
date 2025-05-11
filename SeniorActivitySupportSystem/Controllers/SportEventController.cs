@@ -13,12 +13,14 @@ namespace SeniorActivitySupportSystem.Controllers
     {
         private readonly ICloudinaryService _cloudinary;
         private readonly ISportEventRepository _sportEventRepository;
+        private readonly IHttpContextAccessor _httpContextAccessor;
 
-        public SportEventController(ApplicationDbContext context, ISportEventRepository sportEventRepository, ICloudinaryService cloudinary)
+        public SportEventController(ISportEventRepository sportEventRepository, ICloudinaryService cloudinary, IHttpContextAccessor httpContextAccessor)
         {
             
             _sportEventRepository = sportEventRepository;
             _cloudinary = cloudinary;
+            _httpContextAccessor = httpContextAccessor;
         }
         public async Task<IActionResult> Index()
         {
@@ -32,7 +34,9 @@ namespace SeniorActivitySupportSystem.Controllers
         }
         public IActionResult Create()
         {
-            return View();
+            var curUserId = _httpContextAccessor.HttpContext.User.GetUserId();
+            var createSportEventViewModel = new CreateSportEventViewModel { AppUserId = curUserId };
+            return View(createSportEventViewModel);
         }
 
         [HttpPost]
@@ -53,6 +57,7 @@ namespace SeniorActivitySupportSystem.Controllers
                     Name = sportEventVM.Name,
                     Description = sportEventVM.Description,
                     Image = result.SecureUrl.ToString(), 
+                    AppUserId = sportEventVM.AppUserId,
                     Address = new Address
                     {
                         City = sportEventVM.Address.City,
@@ -79,6 +84,7 @@ namespace SeniorActivitySupportSystem.Controllers
                 Description = sportEvent.Description,
                 AddressId = sportEvent.AddressId,
                 Address = sportEvent.Address,
+                AppUserId = sportEvent.AppUserId,
                 URL = sportEvent.Image,
                 SportEventCategory = sportEvent.EventCategory,
             };
@@ -116,6 +122,7 @@ namespace SeniorActivitySupportSystem.Controllers
                     Description = sportEventVM.Description,
                     Image = imageResult.Url.ToString(),
                     AddressId = sportEventVM.AddressId,
+                    AppUserId = sportEventVM.AppUserId,
                     Address = sportEventVM.Address
                 };
 

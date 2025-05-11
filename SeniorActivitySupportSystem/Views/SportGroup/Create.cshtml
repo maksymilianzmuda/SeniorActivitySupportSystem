@@ -9,6 +9,7 @@
 <div class="form-wrapper">
     <div class="form-container">
         <form asp-action="Create" method="post" enctype="multipart/form-data">
+            <input type="hidden" id="AppUserId" name="AppUserId" asp-for="AppUserId" />
             <div class="form-row">
                 <div class="form-group" style="flex: 1; margin-right: 10px;">
                     <label asp-for="Name">Sport Group Name</label>

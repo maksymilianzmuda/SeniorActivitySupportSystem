@@ -122,4 +122,31 @@ body {
         display: block;
     }
 
+<style >
+.collapsible {
+    background-color: #444;
+    color: white;
+    cursor: pointer;
+    padding: 15px;
+    width: 100%;
+    border: none;
+    text-align: left;
+    outline: none;
+    font-size: 18px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+.collapsible.active, .collapsible:hover {
+    background-color: #555;
+}
+
+.collapsible-content {
+    padding: 0 15px;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.2s ease-out;
+}
+
+</style >
 

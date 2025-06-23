@@ -23,12 +23,12 @@ namespace SeniorActivitySupportSystem.Data
                         {
                             Name = "SportGroup1",
                             Image = "https://www.eatthis.com/wp-content/uploads/sites/4/2020/05/running.jpg?quality=82&strip=1&resize=640%2C360",
-                            Description = "This is the description of the first cinema",
+                            Description = "This is the description of the first group",
                             SportGroupCategory = SportGroupCategory.MenOnly,
                             Address = new Address()
                             {
                                 Street = "123 Main St",
-                                City = "Charlotte",
+                                City = "Katowice",
                                 PostalCode = "41-717"
                             }
                          },
@@ -36,12 +36,12 @@ namespace SeniorActivitySupportSystem.Data
                         {
                             Name = "SportGroup2",
                             Image = "https://www.eatthis.com/wp-content/uploads/sites/4/2020/05/running.jpg?quality=82&strip=1&resize=640%2C360",
-                            Description = "This is the description of the first cinema",
+                            Description = "This is the description of the first group",
                             SportGroupCategory = SportGroupCategory.MenOnly,
                             Address = new Address()
                             {
                                 Street = "123 Main St",
-                                City = "Charlotte",
+                                City = "Katowice",
                                 PostalCode = "41-717"
                             }
                          },
@@ -49,12 +49,12 @@ namespace SeniorActivitySupportSystem.Data
                         {
                             Name = "SportGroup3",
                             Image = "https://www.eatthis.com/wp-content/uploads/sites/4/2020/05/running.jpg?quality=82&strip=1&resize=640%2C360",
-                            Description = "This is the description of the first cinema",
+                            Description = "This is the description of the first group",
                             SportGroupCategory = SportGroupCategory.MenOnly,
                             Address = new Address()
                             {
                                 Street = "123 Main St",
-                                City = "Charlotte",
+                                City = "Katowice",
                                 PostalCode = "41-717"
                             }
                          },
@@ -62,12 +62,12 @@ namespace SeniorActivitySupportSystem.Data
                         {
                             Name = "SportGroup4",
                             Image = "https://www.eatthis.com/wp-content/uploads/sites/4/2020/05/running.jpg?quality=82&strip=1&resize=640%2C360",
-                            Description = "This is the description of the first cinema",
+                            Description = "This is the description of the first group",
                             SportGroupCategory = SportGroupCategory.MenOnly,
                             Address = new Address()
                             {
                                 Street = "123 Main St",
-                                City = "Charlotte",
+                                City = "Katowice",
                                 PostalCode = "41-717"
                             }
                          }
@@ -81,27 +81,27 @@ namespace SeniorActivitySupportSystem.Data
                     {
                         new SportEvent()
                         {
-                            Name = "Running Race 1",
+                            Name = "Sport Event 1",
                             Image = "https://www.eatthis.com/wp-content/uploads/sites/4/2020/05/running.jpg?quality=82&strip=1&resize=640%2C360",
-                            Description = "This is the description of the first race",
+                            Description = "This is the description of the first event",
                             EventCategory = EventCategory.Cycling,
                             Address = new Address()
                             {
                                 Street = "123 Main St",
-                                City = "Charlotte",
+                                City = "Katowice",
                                 PostalCode = "41-717"
                             }
                         },
                        new SportEvent()
                         {
-                            Name = "Running Race 1",
+                            Name = "Sport Event 1",
                             Image = "https://www.eatthis.com/wp-content/uploads/sites/4/2020/05/running.jpg?quality=82&strip=1&resize=640%2C360",
-                            Description = "This is the description of the first race",
+                            Description = "This is the description of the first event",
                             EventCategory = EventCategory.Cycling,
                             Address = new Address()
                             {
                                 Street = "123 Main St",
-                                City = "Charlotte",
+                                City = "Katowice",
                                 PostalCode = "41-717"
                             }
                         }
@@ -125,7 +125,7 @@ namespace SeniorActivitySupportSystem.Data
 
                 //Users
                 var userManager = serviceScope.ServiceProvider.GetRequiredService<UserManager<AppUser>>();
-                string adminUserEmail = "teddysmithdeveloper@gmail.com";
+                string adminUserEmail = "admin@gmail.com";
 
                 var adminUser = await userManager.FindByEmailAsync(adminUserEmail);
                 if (adminUser == null)
@@ -142,7 +142,7 @@ namespace SeniorActivitySupportSystem.Data
                         Address = new Address()
                         {
                             Street = "123 Main St",
-                            City = "Charlotte",
+                            City = "Katowice",
                             PostalCode = "NC-412"
                         }
                     };
@@ -167,7 +167,7 @@ namespace SeniorActivitySupportSystem.Data
                         Address = new Address()
                         {
                             Street = "123 Main St",
-                            City = "Charlotte",
+                            City = "Katowice",
                             PostalCode = "NC-412"
                         }
                     };
